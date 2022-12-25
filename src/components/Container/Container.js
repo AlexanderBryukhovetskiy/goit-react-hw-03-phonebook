@@ -12,7 +12,7 @@ const Container = ({ children }) => {
 
 Container.propTypes = {
   children: PropTypes.arrayOf(
-    PropTypes.element.isRequired).isRequired
+    PropTypes.any.isRequired).isRequired
 };
 
 export default Container;
