@@ -19,25 +19,25 @@ export class App extends Component {
     filter: '',
   }
 
-  componentDidMount () {
-      console.log("this.state before checking localStorage:", this.state);
+  // componentDidMount () {
+  //     console.log("this.state before checking localStorage:", this.state);
 
-    const savedContacts = localStorage.getItem(LS_KEY);
+  //   const savedContacts = localStorage.getItem(LS_KEY);
 
-      console.log("Checking: savedContacts in localStorage: ", savedContacts);
+  //     console.log("Checking: savedContacts in localStorage: ", savedContacts);
 
-    if (savedContacts) {
-      this.setState({ contacts: JSON.parse(savedContacts) });
-        console.log("App.state.contacts is loaded  from  localStorage")
-        console.log(this.state.contacts);
-    }
-  }
+  //   if (savedContacts) {
+  //     this.setState({ contacts: JSON.parse(savedContacts) });
+  //       console.log("App.state.contacts is loaded  from  localStorage")
+  //       console.log(this.state.contacts);
+  //   }
+  // }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.contacts.length !== this.state.contacts.length){
-      localStorage.setItem(LS_KEY, JSON.stringify(this.state.contacts));
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.contacts.length !== this.state.contacts.length){
+  //     localStorage.setItem(LS_KEY, JSON.stringify(this.state.contacts));
+  //   }
+  // }
 
   addContact = newContact => { 
     const contacts = this.state.contacts;
@@ -53,6 +53,19 @@ export class App extends Component {
       })
       //console.log('newContact added to phonebook');
     }
+}
+
+  onHandleFilter = event => {
+    const value =  event.currentTarget.value;
+    this.setState( {filter: value} );
+  }
+
+  searchName = () => {
+    const searchingName = this.state.filter.toLowerCase();
+
+    return this.state.contacts.filter( contact => (
+      contact.name.toLowerCase().includes(searchingName)
+    ));
   }
 
   deleteContact = id => { 
