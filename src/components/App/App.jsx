@@ -21,13 +21,13 @@ export class App extends Component {
         console.log("App.state.contacts is loaded  from  localStorage")
         console.log(this.state.contacts);
     }
-}
-
-componentDidUpdate(prevProps, prevState) {
-  if (prevState.contacts !== this.state.contacts){
-    localStorage.setItem(LS_KEY, JSON.stringify(this.state.contacts));
   }
-}
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts){
+      localStorage.setItem(LS_KEY, JSON.stringify(this.state.contacts));
+    }
+  }
 
 
   onSubmitHandler = newContact => { 
@@ -44,7 +44,7 @@ componentDidUpdate(prevProps, prevState) {
       })
       //console.log('newContact added to phonebook');
     }
-}
+  }
 
   onHandleFilter = event => {
     const value =  event.currentTarget.value;
